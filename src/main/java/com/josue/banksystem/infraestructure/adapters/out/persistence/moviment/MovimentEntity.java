@@ -1,5 +1,6 @@
 package com.josue.banksystem.infraestructure.adapters.out.persistence.moviment;
 
+import com.josue.banksystem.domain.model.MovimentType;
 import com.josue.banksystem.infraestructure.adapters.out.persistence.accounts.AccountEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -27,7 +28,10 @@ public class MovimentEntity {
 
     private LocalDateTime date;
 
-    private String type;
+    // Mapea de enum a varchar en la bd.
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10, nullable = false)
+    private MovimentType type;
 
     @Column(nullable = true, length = 60)
     private String reference;

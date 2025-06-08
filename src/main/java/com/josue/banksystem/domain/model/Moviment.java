@@ -8,13 +8,13 @@ public class Moviment {
     private Account account;
     private Double amount;
     private LocalDateTime date;
-    private String type;
+    private MovimentType type;
     private String reference;
 
     public Moviment() {
     }
 
-    public Moviment(Account account, Double amount, String type) {
+    public Moviment(Account account, Double amount, MovimentType type) {
         this.account = account;
         this.amount = amount;
         this.type = type;
@@ -26,7 +26,7 @@ public class Moviment {
         this.amount = amount;
     }
 
-    public Moviment(Long id, Double amount, LocalDateTime date, String type, String reference) {
+    public Moviment(Long id, Double amount, LocalDateTime date, MovimentType type, String reference) {
         this.id = id;
         this.amount = amount;
         this.date = date;
@@ -74,11 +74,11 @@ public class Moviment {
         this.reference = reference;
     }
 
-    public String getType() {
+    public MovimentType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(MovimentType type) {
         this.type = type;
     }
 }

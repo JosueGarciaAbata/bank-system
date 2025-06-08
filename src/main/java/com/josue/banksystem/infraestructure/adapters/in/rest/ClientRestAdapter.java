@@ -58,7 +58,7 @@ public class ClientRestAdapter {
         return clientMapper.toClientAndUserResponse(client);
     }
 
-    @PreAuthorize("hasRole('CLIENT')")
+    @PreAuthorize("hasAnyRole('CLIENT', 'ADMIN')")
     @GetMapping("/{id}/accounts")
     public ClientResponseWithAccounts getClientWithAccounts(@PathVariable Long id) {
         Client client = getClientWithAccounts.get(id);

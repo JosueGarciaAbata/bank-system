@@ -6,6 +6,7 @@ import com.josue.banksystem.application.out.MovimentRepository;
 import com.josue.banksystem.domain.exception.AccountNotFoundException;
 import com.josue.banksystem.domain.model.Account;
 import com.josue.banksystem.domain.model.Moviment;
+import com.josue.banksystem.domain.model.MovimentType;
 import com.josue.banksystem.infraestructure.common.UseCase;
 
 public class RegisterNewMovimentInteractor implements RegisterNewMoviment {
@@ -20,7 +21,7 @@ public class RegisterNewMovimentInteractor implements RegisterNewMoviment {
 
     @UseCase
     @Override
-    public void register(Long idAccount, Double amount, String type) {
+    public void register(Long idAccount, Double amount, MovimentType type) {
 
         Account account = accountRepository.findById(idAccount)
                 .orElseThrow(() -> new AccountNotFoundException("Account not found: " + idAccount));

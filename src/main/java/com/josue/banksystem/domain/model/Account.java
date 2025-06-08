@@ -8,7 +8,7 @@ public class Account {
     private Long id;
     private String accountNumber;
     private Double balance;
-    private String type;
+    private AccountType type;
     private Client client;
     private List<Moviment> moviments;
 
@@ -16,14 +16,14 @@ public class Account {
         this.moviments = new ArrayList<>();
     }
 
-    public Account(Long id, String accountNumber, Double balance, String type) {
+    public Account(Long id, String accountNumber, Double balance, AccountType type) {
         this.id = id;
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.type = type;
     }
 
-    public Account(Long id, String accountNumber, Double balance, Client client, String type) {
+    public Account(Long id, String accountNumber, Double balance, Client client, AccountType type) {
         this.id = id;
         this.accountNumber = accountNumber;
         this.balance = balance;
@@ -47,11 +47,11 @@ public class Account {
         this.accountNumber = accountNumber;
     }
 
-    public String getType() {
+    public AccountType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(AccountType type) {
         this.type = type;
     }
 

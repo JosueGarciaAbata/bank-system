@@ -7,6 +7,7 @@ import com.josue.banksystem.domain.exception.InsufficientAccountBalance;
 import com.josue.banksystem.application.in.transfer.TransferMoney;
 import com.josue.banksystem.domain.model.Account;
 import com.josue.banksystem.application.out.AccountRepository;
+import com.josue.banksystem.domain.model.MovimentType;
 import com.josue.banksystem.infraestructure.common.UseCase;
 
 
@@ -56,7 +57,7 @@ public class TransferMoneyInteractor implements TransferMoney {
         registerNewTransfer.register(idSourceAccount, idDestinationAccount, amount, description);
 
         // to register the moviment.
-        registerNewMoviment.register(idSourceAccount, amount, "DEBIT");
-        registerNewMoviment.register(idDestinationAccount, amount,  "CREDIT");
+        registerNewMoviment.register(idSourceAccount, amount, MovimentType.WITHDRAWAL);
+        registerNewMoviment.register(idDestinationAccount, amount,  MovimentType.DEPOSIT);
     }
 }

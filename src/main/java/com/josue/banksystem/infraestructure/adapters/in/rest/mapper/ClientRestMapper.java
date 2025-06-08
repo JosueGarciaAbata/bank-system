@@ -9,7 +9,7 @@ import com.josue.banksystem.infraestructure.adapters.in.rest.response.client.Cli
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring", uses = { UserRestMapper.class, ClientRestMapper.class })
+@Mapper(componentModel = "spring", uses = { UserRestMapper.class, AccountRestMapper.class })
 public interface ClientRestMapper {
 
     Client toClient(CreateClientRequest request);

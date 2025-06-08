@@ -53,7 +53,7 @@ public class AccountRestAdapter {
         return ResponseEntity.status(HttpStatus.CREATED).body(mapper.toResponse(createAccount.create(account)));
     }
 
-    @PreAuthorize("hasAnyRole('CLIENT')")
+    @PreAuthorize("hasAnyRole('CLIENT', 'ADMIN')")
     @PostMapping("/transfer")
     public ResponseEntity<String> transfer(@Valid @RequestBody TransferMoneyRequest request) {
         transferMoney.transfer(request.getIdSourceAccount(), request.getIdDestAccount(), request.getAmount(), request.getDescription());
@@ -67,7 +67,7 @@ public class AccountRestAdapter {
         return mapper.toResponse(findAccountById.findById(id));
     }
 
-    @PreAuthorize("hasAnyRole('CLIENT')")
+    @PreAuthorize("hasAnyRole('CLIENT', 'ADMIN')")
     @GetMapping("/{id}/moviments")
     public AccountResponseWithMoviments withMoviments(@PathVariable Long id) {
         return mapper.toAccountResponseWithMoviments(findAccountWithMovimentsById.findById(id));
