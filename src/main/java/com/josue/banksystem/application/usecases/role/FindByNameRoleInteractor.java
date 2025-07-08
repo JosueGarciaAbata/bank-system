@@ -3,7 +3,7 @@ package com.josue.banksystem.application.usecases.role;
 import com.josue.banksystem.application.in.role.FindByNameRole;
 import com.josue.banksystem.application.out.RoleRepository;
 import com.josue.banksystem.domain.exception.RoleNotFoundException;
-import com.josue.banksystem.domain.model.Role;
+import com.josue.banksystem.domain.models.Role;
 
 public class FindByNameRoleInteractor implements FindByNameRole {
 

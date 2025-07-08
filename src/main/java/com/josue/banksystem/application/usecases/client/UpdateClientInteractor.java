@@ -4,7 +4,7 @@ import com.josue.banksystem.application.common.annotations.UseCase;
 import com.josue.banksystem.application.in.client.UpdateClient;
 import com.josue.banksystem.application.out.ClientRepository;
 import com.josue.banksystem.domain.exception.ClientNotFoundExcepcion;
-import com.josue.banksystem.domain.model.Client;
+import com.josue.banksystem.domain.models.Client;
 
 public class UpdateClientInteractor implements UpdateClient {
 

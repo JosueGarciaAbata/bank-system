@@ -5,8 +5,8 @@ import com.josue.banksystem.application.in.account.DepositMoney;
 import com.josue.banksystem.application.in.services.RegisterNewMoviment;
 import com.josue.banksystem.application.out.AccountRepository;
 import com.josue.banksystem.domain.exception.AccountNotFoundException;
-import com.josue.banksystem.domain.model.Account;
-import com.josue.banksystem.domain.model.MovimentType;
+import com.josue.banksystem.domain.models.Account;
+import com.josue.banksystem.domain.enumerations.MovimentType;
 
 public class DepositMoneyInteractor implements DepositMoney {
 

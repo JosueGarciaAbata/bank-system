@@ -1,6 +1,6 @@
 package com.josue.banksystem.application.in.account;
 
-import com.josue.banksystem.domain.model.Account;
+import com.josue.banksystem.domain.models.Account;
 
 public interface FindAccountById {
 

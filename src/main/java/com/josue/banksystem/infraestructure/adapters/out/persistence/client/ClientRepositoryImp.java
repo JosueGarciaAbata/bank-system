@@ -1,7 +1,6 @@
 package com.josue.banksystem.infraestructure.adapters.out.persistence.client;
 
-import com.josue.banksystem.domain.model.Account;
-import com.josue.banksystem.domain.model.Client;
+import com.josue.banksystem.domain.models.Client;
 import com.josue.banksystem.application.out.ClientRepository;
 import com.josue.banksystem.infraestructure.adapters.out.persistence.mappers.ClientPersistenceMapper;
 import com.josue.banksystem.infraestructure.adapters.out.persistence.mappers.RolePersistenceMapper;

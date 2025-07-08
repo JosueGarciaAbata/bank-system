@@ -1,10 +1,8 @@
 package com.josue.banksystem.infraestructure.adapters.out.persistence.mappers;
 
-import com.josue.banksystem.domain.model.Account;
-import com.josue.banksystem.domain.model.Moviment;
-import com.josue.banksystem.infraestructure.adapters.out.persistence.accounts.AccountEntity;
-import com.josue.banksystem.infraestructure.adapters.out.persistence.moviment.MovimentEntity;
-import org.mapstruct.IterableMapping;
+import com.josue.banksystem.domain.models.Account;
+import com.josue.banksystem.domain.models.Moviment;
+import com.josue.banksystem.infraestructure.adapters.out.persistence.account.AccountEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

@@ -3,7 +3,7 @@ package com.josue.banksystem.application.usecases.client;
 import com.josue.banksystem.application.in.client.FindClientById;
 import com.josue.banksystem.application.out.ClientRepository;
 import com.josue.banksystem.domain.exception.ClientNotFoundExcepcion;
-import com.josue.banksystem.domain.model.Client;
+import com.josue.banksystem.domain.models.Client;
 
 public class FindClientByIdInteractor implements FindClientById {
 

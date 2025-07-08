@@ -7,10 +7,10 @@ import com.josue.banksystem.application.in.services.RegisterNewClientUser;
 import com.josue.banksystem.application.out.UserRepository;
 import com.josue.banksystem.domain.exception.RoleNotFoundException;
 import com.josue.banksystem.domain.exception.UserEmailAlreadyTaken;
-import com.josue.banksystem.domain.model.Client;
-import com.josue.banksystem.domain.model.Role;
+import com.josue.banksystem.domain.models.Client;
+import com.josue.banksystem.domain.models.Role;
 import com.josue.banksystem.application.out.RoleRepository;
-import com.josue.banksystem.domain.model.User;
+import com.josue.banksystem.domain.models.User;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 

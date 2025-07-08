@@ -1,6 +1,6 @@
 package com.josue.banksystem.application.out;
 
-import com.josue.banksystem.domain.model.User;
+import com.josue.banksystem.domain.models.User;
 
 import java.util.List;
 import java.util.Optional;

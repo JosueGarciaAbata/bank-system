@@ -3,7 +3,7 @@ package com.josue.banksystem.application.usecases.user;
 import com.josue.banksystem.application.in.user.FindUserById;
 import com.josue.banksystem.application.out.UserRepository;
 import com.josue.banksystem.domain.exception.UserNotFoundException;
-import com.josue.banksystem.domain.model.User;
+import com.josue.banksystem.domain.models.User;
 
 public class FindUserByIdInteractor implements FindUserById {
 

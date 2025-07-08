@@ -2,7 +2,7 @@ package com.josue.banksystem.application.usecases.client;
 
 import com.josue.banksystem.application.in.client.GetClients;
 import com.josue.banksystem.application.out.ClientRepository;
-import com.josue.banksystem.domain.model.Client;
+import com.josue.banksystem.domain.models.Client;
 
 import java.util.List;
 

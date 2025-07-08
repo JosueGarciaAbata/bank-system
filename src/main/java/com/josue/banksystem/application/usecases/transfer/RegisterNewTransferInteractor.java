@@ -5,8 +5,8 @@ import com.josue.banksystem.application.in.transfer.RegisterNewTransfer;
 import com.josue.banksystem.application.out.AccountRepository;
 import com.josue.banksystem.application.out.TransferRepository;
 import com.josue.banksystem.domain.exception.AccountNotFoundException;
-import com.josue.banksystem.domain.model.Account;
-import com.josue.banksystem.domain.model.Transfer;
+import com.josue.banksystem.domain.models.Account;
+import com.josue.banksystem.domain.models.Transfer;
 
 public class RegisterNewTransferInteractor implements RegisterNewTransfer {
 

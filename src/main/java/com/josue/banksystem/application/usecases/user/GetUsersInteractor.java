@@ -2,7 +2,7 @@ package com.josue.banksystem.application.usecases.user;
 
 import com.josue.banksystem.application.in.user.GetUsers;
 import com.josue.banksystem.application.out.UserRepository;
-import com.josue.banksystem.domain.model.User;
+import com.josue.banksystem.domain.models.User;
 
 import java.util.List;
 

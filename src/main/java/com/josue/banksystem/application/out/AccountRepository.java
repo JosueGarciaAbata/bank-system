@@ -1,8 +1,6 @@
 package com.josue.banksystem.application.out;
 
-import com.josue.banksystem.domain.model.Account;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import com.josue.banksystem.domain.models.Account;
 
 import java.util.List;
 import java.util.Optional;

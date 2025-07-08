@@ -2,7 +2,7 @@ package com.josue.banksystem.application.usecases.account;
 
 import com.josue.banksystem.application.in.account.GetAccounts;
 import com.josue.banksystem.application.out.AccountRepository;
-import com.josue.banksystem.domain.model.Account;
+import com.josue.banksystem.domain.models.Account;
 
 import java.util.List;
 

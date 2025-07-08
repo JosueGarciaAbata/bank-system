@@ -1,8 +1,7 @@
 package com.josue.banksystem.application.out;
 
-import com.josue.banksystem.domain.model.Role;
+import com.josue.banksystem.domain.models.Role;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 

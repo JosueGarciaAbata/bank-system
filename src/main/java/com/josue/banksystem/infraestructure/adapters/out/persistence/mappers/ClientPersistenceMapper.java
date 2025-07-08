@@ -1,7 +1,7 @@
 package com.josue.banksystem.infraestructure.adapters.out.persistence.mappers;
 
-import com.josue.banksystem.domain.model.Account;
-import com.josue.banksystem.domain.model.Client;
+import com.josue.banksystem.domain.models.Account;
+import com.josue.banksystem.domain.models.Client;
 import com.josue.banksystem.infraestructure.adapters.out.persistence.client.ClientEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

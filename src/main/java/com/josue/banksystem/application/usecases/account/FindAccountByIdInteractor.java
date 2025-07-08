@@ -1,10 +1,9 @@
 package com.josue.banksystem.application.usecases.account;
 
-import com.josue.banksystem.application.common.annotations.UseCase;
 import com.josue.banksystem.application.in.account.FindAccountById;
 import com.josue.banksystem.application.out.AccountRepository;
 import com.josue.banksystem.domain.exception.AccountNotFoundException;
-import com.josue.banksystem.domain.model.Account;
+import com.josue.banksystem.domain.models.Account;
 
 public class FindAccountByIdInteractor implements FindAccountById {
 

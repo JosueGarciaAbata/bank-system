@@ -6,9 +6,9 @@ import com.josue.banksystem.application.in.transfer.RegisterNewTransfer;
 import com.josue.banksystem.domain.exception.AccountNotFoundException;
 import com.josue.banksystem.domain.exception.InsufficientAccountBalance;
 import com.josue.banksystem.application.in.transfer.TransferMoney;
-import com.josue.banksystem.domain.model.Account;
+import com.josue.banksystem.domain.models.Account;
 import com.josue.banksystem.application.out.AccountRepository;
-import com.josue.banksystem.domain.model.MovimentType;
+import com.josue.banksystem.domain.enumerations.MovimentType;
 
 public class TransferMoneyInteractor implements TransferMoney {
 

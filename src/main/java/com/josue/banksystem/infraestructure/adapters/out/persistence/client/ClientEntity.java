@@ -1,6 +1,6 @@
 package com.josue.banksystem.infraestructure.adapters.out.persistence.client;
 
-import com.josue.banksystem.infraestructure.adapters.out.persistence.accounts.AccountEntity;
+import com.josue.banksystem.infraestructure.adapters.out.persistence.account.AccountEntity;
 import com.josue.banksystem.infraestructure.adapters.out.persistence.user.UserEntity;
 
 import jakarta.persistence.*;

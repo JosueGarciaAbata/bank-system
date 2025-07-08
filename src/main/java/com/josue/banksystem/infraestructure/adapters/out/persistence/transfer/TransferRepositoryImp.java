@@ -1,7 +1,7 @@
 package com.josue.banksystem.infraestructure.adapters.out.persistence.transfer;
 
 import com.josue.banksystem.application.out.TransferRepository;
-import com.josue.banksystem.domain.model.Transfer;
+import com.josue.banksystem.domain.models.Transfer;
 import com.josue.banksystem.infraestructure.adapters.out.persistence.mappers.TransferPersistencerMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

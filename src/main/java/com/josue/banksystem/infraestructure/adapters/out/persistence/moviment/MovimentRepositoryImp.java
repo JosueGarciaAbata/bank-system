@@ -1,7 +1,7 @@
 package com.josue.banksystem.infraestructure.adapters.out.persistence.moviment;
 
 import com.josue.banksystem.application.out.MovimentRepository;
-import com.josue.banksystem.domain.model.Moviment;
+import com.josue.banksystem.domain.models.Moviment;
 import com.josue.banksystem.infraestructure.adapters.out.persistence.mappers.MovimentPersistenceMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

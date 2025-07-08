@@ -1,9 +1,8 @@
 package com.josue.banksystem.infraestructure.adapters.out.persistence.user;
 
 import com.josue.banksystem.application.out.UserRepository;
-import com.josue.banksystem.domain.model.User;
+import com.josue.banksystem.domain.models.User;
 import com.josue.banksystem.infraestructure.adapters.out.persistence.mappers.UserPersistenceMapper;
-import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;

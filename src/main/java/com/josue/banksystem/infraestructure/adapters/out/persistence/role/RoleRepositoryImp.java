@@ -1,6 +1,6 @@
 package com.josue.banksystem.infraestructure.adapters.out.persistence.role;
 
-import com.josue.banksystem.domain.model.Role;
+import com.josue.banksystem.domain.models.Role;
 import com.josue.banksystem.application.out.RoleRepository;
 
 import com.josue.banksystem.infraestructure.adapters.out.persistence.mappers.RolePersistenceMapper;

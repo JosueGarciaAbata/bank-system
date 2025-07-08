@@ -1,7 +1,6 @@
 package com.josue.banksystem.application.out;
 
-import com.josue.banksystem.domain.model.Moviment;
-import com.josue.banksystem.domain.model.Transfer;
+import com.josue.banksystem.domain.models.Transfer;
 
 import java.util.List;
 import java.util.Optional;

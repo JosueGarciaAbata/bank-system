@@ -5,8 +5,8 @@ import com.josue.banksystem.application.in.account.WithDrawMoney;
 import com.josue.banksystem.application.in.services.RegisterNewMoviment;
 import com.josue.banksystem.application.out.AccountRepository;
 import com.josue.banksystem.domain.exception.AccountNotFoundException;
-import com.josue.banksystem.domain.model.Account;
-import com.josue.banksystem.domain.model.MovimentType;
+import com.josue.banksystem.domain.models.Account;
+import com.josue.banksystem.domain.enumerations.MovimentType;
 
 // Recordemos que los casos de uso no deben replicar la logica de validacion
 // que ya reside en los modelo de dominio.

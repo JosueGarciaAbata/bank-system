@@ -1,7 +1,5 @@
 package com.josue.banksystem.infraestructure.config;
 
-import com.josue.banksystem.application.out.RoleRepository;
-import com.josue.banksystem.domain.model.Role;
 import com.josue.banksystem.infraestructure.adapters.out.persistence.role.RoleEntity;
 import com.josue.banksystem.infraestructure.adapters.out.persistence.role.RoleJpaRepository;
 import org.springframework.boot.CommandLineRunner;

@@ -5,7 +5,7 @@ import com.josue.banksystem.application.in.user.UpdateUser;
 import com.josue.banksystem.application.out.UserRepository;
 import com.josue.banksystem.domain.exception.UserEmailAlreadyTaken;
 import com.josue.banksystem.domain.exception.UserNotFoundException;
-import com.josue.banksystem.domain.model.User;
+import com.josue.banksystem.domain.models.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class UpdateUserInteractor implements UpdateUser {

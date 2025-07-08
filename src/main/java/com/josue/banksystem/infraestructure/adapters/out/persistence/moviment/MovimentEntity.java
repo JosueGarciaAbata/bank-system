@@ -1,7 +1,7 @@
 package com.josue.banksystem.infraestructure.adapters.out.persistence.moviment;
 
-import com.josue.banksystem.domain.model.MovimentType;
-import com.josue.banksystem.infraestructure.adapters.out.persistence.accounts.AccountEntity;
+import com.josue.banksystem.domain.enumerations.MovimentType;
+import com.josue.banksystem.infraestructure.adapters.out.persistence.account.AccountEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

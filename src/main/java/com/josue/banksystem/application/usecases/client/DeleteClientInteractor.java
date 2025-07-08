@@ -7,8 +7,8 @@ import com.josue.banksystem.application.out.ClientRepository;
 import com.josue.banksystem.domain.exception.ClientNotFoundExcepcion;
 import com.josue.banksystem.domain.exception.ClientWithAccountsAssociatedException;
 import com.josue.banksystem.domain.exception.ClientWithUserAssociatedException;
-import com.josue.banksystem.domain.model.Account;
-import com.josue.banksystem.domain.model.Client;
+import com.josue.banksystem.domain.models.Account;
+import com.josue.banksystem.domain.models.Client;
 
 import java.util.List;
 
