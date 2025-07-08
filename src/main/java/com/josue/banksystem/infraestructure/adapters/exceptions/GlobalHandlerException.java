@@ -1,9 +1,11 @@
 package com.josue.banksystem.infraestructure.adapters.exceptions;
 
 import com.josue.banksystem.domain.exception.*;
+import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -13,7 +15,18 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestControllerAdvice
+@Order(5)
 public class GlobalHandlerException {
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<String> handleHttpMessageNotReadable(HttpMessageNotReadableException ex) {
+        String mensaje = Optional.ofNullable(ex.getRootCause())
+                .map(Throwable::getMessage)
+                .orElse(ex.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body("Error de formato: " + mensaje);
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidation(
@@ -40,46 +53,6 @@ public class GlobalHandlerException {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(errores);
-    }
-
-    @ExceptionHandler(ClientNotFoundExcepcion.class)
-    public ResponseEntity<String> clientNotFound(ClientNotFoundExcepcion ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
-    }
-
-    @ExceptionHandler(AccountNotFoundException.class)
-    public ResponseEntity<String> handleAccountNotFound(AccountNotFoundException e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(DuplicateUserEmailException.class)
-    public ResponseEntity<String> duplicateUserEmail(DuplicateUserEmailException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-    }
-
-    @ExceptionHandler(InsufficientAccountBalance.class)
-    public ResponseEntity<String> insufficientAccountBalance(InsufficientAccountBalance ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-    }
-
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<String> userNotFound(UserNotFoundException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
-    }
-
-    @ExceptionHandler(RoleNotFoundException.class)
-    public  ResponseEntity<String> roleNotFound(RoleNotFoundException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
-    }
-
-    @ExceptionHandler(UserAlreadyDeletedException.class)
-    public  ResponseEntity<String> userAlreadyDeleted(UserAlreadyDeletedException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-    }
-
-    @ExceptionHandler(UserEmailAlreadyTaken.class)
-    public ResponseEntity<String> userEmailAlreadyTaken(UserEmailAlreadyTaken ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)

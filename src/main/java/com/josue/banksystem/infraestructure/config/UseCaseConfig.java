@@ -1,9 +1,6 @@
 package com.josue.banksystem.infraestructure.config;
 
-import com.josue.banksystem.application.in.account.CreateAccount;
-import com.josue.banksystem.application.in.account.FindAccountById;
-import com.josue.banksystem.application.in.account.FindAccountWithMovimentsById;
-import com.josue.banksystem.application.in.account.GetAccounts;
+import com.josue.banksystem.application.in.account.*;
 import com.josue.banksystem.application.in.client.*;
 import com.josue.banksystem.application.in.role.FindByNameRole;
 import com.josue.banksystem.application.in.services.RegisterNewMoviment;
@@ -14,10 +11,7 @@ import com.josue.banksystem.application.in.user.FindUserById;
 import com.josue.banksystem.application.in.user.GetUsers;
 import com.josue.banksystem.application.in.user.UpdateUser;
 import com.josue.banksystem.application.out.*;
-import com.josue.banksystem.application.usecases.account.CreateAccountInteractor;
-import com.josue.banksystem.application.usecases.account.FindAccountByIdInteractor;
-import com.josue.banksystem.application.usecases.account.FindAccountWithMovimentsByIdInteractor;
-import com.josue.banksystem.application.usecases.account.GetAccountsInteractor;
+import com.josue.banksystem.application.usecases.account.*;
 import com.josue.banksystem.application.usecases.client.*;
 import com.josue.banksystem.application.usecases.role.FindByNameRoleInteractor;
 import com.josue.banksystem.application.usecases.services.RegisterNewMovimentInteractor;
@@ -124,5 +118,10 @@ public class UseCaseConfig {
                                                   RegisterNewMoviment registerNewMoviment,
                                                   RegisterNewTransfer registerNewTransfer) {
         return new TransferMoneyInteractor(accountRepository, registerNewMoviment, registerNewTransfer);
+    }
+
+    @Bean
+    public WithDrawMoney withDrawMoney(AccountRepository accountRepository, RegisterNewMoviment registerNewMoviment) {
+        return new WithDrawMoneyInteractor(accountRepository, registerNewMoviment);
     }
 }

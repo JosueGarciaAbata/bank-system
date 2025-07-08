@@ -1,6 +1,10 @@
 package com.josue.banksystem.infraestructure.adapters.in.rest.request.account;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.josue.banksystem.domain.model.AccountType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -20,8 +24,9 @@ public class CreateAccountRequest {
     @NotNull(message = "Balance must not be null.")
     private Double balance;
 
-    @NotBlank(message = "Type must not be null and empty.")
-    private String type;
+    @NotNull(message = "Type must not be null and empty.")
+    // Jackson convierte: "SAVINGS" a AccountType.SAVINGS (sino puede lanza excepcion).
+    private AccountType type;
 
     @NotNull(message = "Client id must not be null and empty.")
     @JsonProperty("client_id")

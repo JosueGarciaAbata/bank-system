@@ -48,7 +48,10 @@ public class AccountRepositoryImp implements AccountRepository {
                 .get(); // managed
 
         // Como le envio un managed no da detached exception.
+        // Internamente si logra hacer el parse de Client a ClientEntity, pero queda detached, asi que se lo asigno de nuevo.
         AccountEntity entity = persistenceMapper.toAccountEntity(account);
+        entity.setClient(clientEntity);
+
         AccountEntity saved = repositoryJpa.save(entity);
 
         return persistenceMapper.toAccount(saved);

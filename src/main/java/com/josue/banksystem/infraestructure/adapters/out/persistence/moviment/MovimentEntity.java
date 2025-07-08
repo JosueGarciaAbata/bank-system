@@ -19,13 +19,15 @@ public class MovimentEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // it's dangerous to use cascade. If I delete the account of this entity, that account is deleted of the db.
+    // It's dangerous to use cascade. If I delete the account of this entity, that account is deleted of the db.
     @ManyToOne()
     @JoinColumn(name = "account_id", nullable = false)
     private AccountEntity account;
 
+    @Column(nullable = false)
     private Double amount;
 
+    @Column(nullable = false)
     private LocalDateTime date;
 
     // Mapea de enum a varchar en la bd.
@@ -33,7 +35,7 @@ public class MovimentEntity {
     @Column(length = 10, nullable = false)
     private MovimentType type;
 
-    @Column(nullable = true, length = 60)
+    @Column(nullable = false, length = 60)
     private String reference;
 
     @PrePersist

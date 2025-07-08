@@ -22,6 +22,7 @@ public class AccountEntity {
     @Column(nullable = false, name = "account_number", unique = true)
     private String accountNumber;
 
+    @Column(nullable = false, name = "balance")
     private Double balance;
 
     @Enumerated(EnumType.STRING)
@@ -29,7 +30,7 @@ public class AccountEntity {
     private AccountType type;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "client_id", nullable = false)
     private ClientEntity client;
 
     @OneToMany(mappedBy = "account")

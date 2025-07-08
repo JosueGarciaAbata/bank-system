@@ -27,8 +27,13 @@ public class TransferEntity {
     @JoinColumn(name = "destination_account_id",   nullable = false)
     private AccountEntity destinationAccount;
 
+    @Column(nullable = false)
     private Double amount;
+
+    @Column(nullable = false)
     private LocalDateTime date;
+
+    @Column(nullable = false)
     private String description;
 
     @PrePersist

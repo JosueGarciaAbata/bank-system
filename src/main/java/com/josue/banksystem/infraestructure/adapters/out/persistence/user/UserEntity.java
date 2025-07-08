@@ -21,16 +21,17 @@ public class UserEntity {
 
     @Getter
     @Setter
-    @Column(name = "email", unique = true)
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
     @Getter
     @Setter
+    @Column(nullable = false)
     private String password;
 
     @Getter
     @Setter
-    @Column(name = "is_enabled")
+    @Column(name = "is_enabled", nullable = false)
     private boolean enabled; // Este es para seguridad
 
     @Getter

@@ -1,5 +1,7 @@
 package com.josue.banksystem.domain.model;
 
+import com.josue.banksystem.domain.exception.InsufficientAccountBalance;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,11 +82,27 @@ public class Account {
     }
 
     public void substractBalance(Double amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Amount must be greater than zero");
+        }
+
         this.balance -= amount;
     }
 
     public void addBalance(Double amount) {
         this.balance += amount;
+    }
+
+    public void withdraw(Double amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Amount must be greater than zero");
+        }
+
+        if (this.getBalance() < amount) {
+            throw new InsufficientAccountBalance("Insufficient funds");
+        }
+
+        this.balance -= amount;
     }
 
     @Override

@@ -17,6 +17,7 @@ public class RoleEntity {
 
     @Getter
     @Setter
+    @Column(nullable = false)
     private String name;
 
 }
