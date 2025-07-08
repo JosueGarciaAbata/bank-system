@@ -1,4 +1,4 @@
-package com.josue.banksystem.infraestructure.common;
+package com.josue.banksystem.application.common.annotations;
 
 import org.springframework.transaction.annotation.Transactional;
 import java.lang.annotation.ElementType;

@@ -1,5 +1,6 @@
 package com.josue.banksystem.application.usecases.client;
 
+import com.josue.banksystem.application.common.annotations.UseCase;
 import com.josue.banksystem.application.in.client.UpdateClient;
 import com.josue.banksystem.application.out.ClientRepository;
 import com.josue.banksystem.domain.exception.ClientNotFoundExcepcion;
@@ -14,6 +15,7 @@ public class UpdateClientInteractor implements UpdateClient {
     }
 
     @Override
+    @UseCase
     public Client update(Long id, Client client) {
         Client toUpdate = clientRepository.findById(id).orElseThrow(() -> new ClientNotFoundExcepcion("Client not found with id=" + id));
         toUpdate.setName(client.getName());

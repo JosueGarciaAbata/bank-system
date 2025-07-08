@@ -1,5 +1,6 @@
 package com.josue.banksystem.application.usecases.account;
 
+import com.josue.banksystem.application.common.annotations.UseCase;
 import com.josue.banksystem.application.in.account.DepositMoney;
 import com.josue.banksystem.application.in.services.RegisterNewMoviment;
 import com.josue.banksystem.application.out.AccountRepository;
@@ -18,6 +19,7 @@ public class DepositMoneyInteractor implements DepositMoney {
     }
 
     @Override
+    @UseCase
     public Account deposit(Long accountId, double amount) {
 
         Account account = repository.findById(accountId)

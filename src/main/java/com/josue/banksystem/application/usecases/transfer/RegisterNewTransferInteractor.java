@@ -1,12 +1,12 @@
 package com.josue.banksystem.application.usecases.transfer;
 
+import com.josue.banksystem.application.common.annotations.UseCase;
 import com.josue.banksystem.application.in.transfer.RegisterNewTransfer;
 import com.josue.banksystem.application.out.AccountRepository;
 import com.josue.banksystem.application.out.TransferRepository;
 import com.josue.banksystem.domain.exception.AccountNotFoundException;
 import com.josue.banksystem.domain.model.Account;
 import com.josue.banksystem.domain.model.Transfer;
-import com.josue.banksystem.infraestructure.common.UseCase;
 
 public class RegisterNewTransferInteractor implements RegisterNewTransfer {
 

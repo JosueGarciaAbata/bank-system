@@ -1,5 +1,6 @@
 package com.josue.banksystem.application.usecases.client;
 
+import com.josue.banksystem.application.common.annotations.UseCase;
 import com.josue.banksystem.application.in.client.DeleteClient;
 import com.josue.banksystem.application.out.AccountRepository;
 import com.josue.banksystem.application.out.ClientRepository;
@@ -23,6 +24,7 @@ public class DeleteClientInteractor implements DeleteClient {
 
     // remember: here the entities are detached.
     @Override
+    @UseCase
     public void delete(Long id) {
         Client client = clientRepository.findById(id).orElseThrow(() -> new ClientNotFoundExcepcion("Client not found with id=" + id));
         List<Account> accounts = accountRepository.findByClientId(client.getId());

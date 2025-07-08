@@ -1,5 +1,6 @@
 package com.josue.banksystem.application.usecases.services;
 
+import com.josue.banksystem.application.common.annotations.UseCase;
 import com.josue.banksystem.application.in.client.CreateClient;
 import com.josue.banksystem.application.in.user.CreateUser;
 import com.josue.banksystem.application.in.services.RegisterNewClientUser;
@@ -11,7 +12,6 @@ import com.josue.banksystem.domain.model.Role;
 import com.josue.banksystem.application.out.RoleRepository;
 import com.josue.banksystem.domain.model.User;
 
-import com.josue.banksystem.infraestructure.common.UseCase;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class RegisterNewClientUserInteractor implements RegisterNewClientUser {
