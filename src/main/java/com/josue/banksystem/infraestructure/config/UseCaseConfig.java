@@ -124,4 +124,9 @@ public class UseCaseConfig {
     public WithDrawMoney withDrawMoney(AccountRepository accountRepository, RegisterNewMoviment registerNewMoviment) {
         return new WithDrawMoneyInteractor(accountRepository, registerNewMoviment);
     }
+
+    @Bean
+    public DepositMoney depositMoney(AccountRepository accountRepository, RegisterNewMoviment registerNewMoviment) {
+        return new DepositMoneyInteractor(accountRepository, registerNewMoviment);
+    }
 }

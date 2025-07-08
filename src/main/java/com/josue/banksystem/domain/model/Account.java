@@ -105,6 +105,14 @@ public class Account {
         this.balance -= amount;
     }
 
+    public void deposit(Double amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Amount must be greater than zero");
+        }
+
+        this.balance += amount;
+    }
+
     @Override
     public String toString() {
         return "Account{" +

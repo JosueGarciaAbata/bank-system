@@ -8,6 +8,7 @@ import com.josue.banksystem.domain.model.Account;
 import com.josue.banksystem.domain.model.Client;
 import com.josue.banksystem.infraestructure.adapters.in.rest.mapper.AccountRestMapper;
 import com.josue.banksystem.infraestructure.adapters.in.rest.request.account.CreateAccountRequest;
+import com.josue.banksystem.infraestructure.adapters.in.rest.request.account.DepositRequest;
 import com.josue.banksystem.infraestructure.adapters.in.rest.request.account.WithdrawRequest;
 import com.josue.banksystem.infraestructure.adapters.in.rest.request.transfer.TransferMoneyRequest;
 import com.josue.banksystem.infraestructure.adapters.in.rest.response.account.AccountResponse;
@@ -33,6 +34,7 @@ public class AccountRestAdapter {
     private FindAccountById findAccountById;
     private FindAccountWithMovimentsById findAccountWithMovimentsById;
     private WithDrawMoney withDrawMoney;
+    private DepositMoney depositMoney;
 
     private FindClientById  findClientById;
     private TransferMoney transferMoney;
@@ -85,7 +87,6 @@ public class AccountRestAdapter {
         return mapper.toAccountResponseWithMoviments(findAccountWithMovimentsById.findById(id));
     }
 
-    // Withdraw money
     @PostMapping("/withdraw/{accountId}")
     public AccountResponse withdrawMoney(@PathVariable Long accountId,
                                          @RequestBody WithdrawRequest withdrawRequest) {
@@ -93,4 +94,10 @@ public class AccountRestAdapter {
         return mapper.toResponse(ac);
     }
 
+    @PostMapping("/deposit/{accountId}")
+    public AccountResponse depositMoney(@PathVariable Long accountId,
+                                         @RequestBody DepositRequest depositRequest) {
+        Account ac = depositMoney.deposit(accountId, depositRequest.getAmount());
+        return mapper.toResponse(ac);
+    }
 }
