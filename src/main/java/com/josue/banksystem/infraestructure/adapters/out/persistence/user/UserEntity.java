@@ -3,39 +3,37 @@ package com.josue.banksystem.infraestructure.adapters.out.persistence.user;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.josue.banksystem.infraestructure.adapters.out.persistence.role.RoleEntity;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
+
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
+@SQLDelete(sql = "UPDATE users SET deleted_at = NOW() WHERE id = ?")
+@SQLRestriction("deleted_at IS NULL")
 public class UserEntity {
 
-    @Getter
-    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
-    @Setter
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    @Getter
-    @Setter
     @Column(nullable = false)
     private String password;
 
-    @Getter
-    @Setter
     @Column(name = "is_enabled", nullable = false)
     private boolean enabled; // Este es para seguridad
 
-    @Getter
-    @Setter
     @ManyToMany
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -47,5 +45,9 @@ public class UserEntity {
     public void prePersist() {
         this.enabled = true;
     }
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
+
 
 }

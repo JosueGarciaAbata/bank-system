@@ -25,18 +25,20 @@ public class DeleteClientInteractor implements DeleteClient {
     // remember: here the entities are detached.
     @Override
     @UseCase
+    // Creo que aqui deberia borrar las cuentas asociadas al cliente
     public void delete(Long id) {
-        Client client = clientRepository.findById(id).orElseThrow(() -> new ClientNotFoundExcepcion("Client not found with id=" + id));
-        List<Account> accounts = accountRepository.findByClientId(client.getId());
-        client.setAccounts(accounts);
+        Client client = clientRepository.findByIdWithAccounts(id)
+                .orElseThrow(() -> new ClientNotFoundExcepcion("Client not found with id=" + id));
 
-        if (!client.getAccounts().isEmpty()) {
-            throw new ClientWithAccountsAssociatedException("Client has account associated. It could not be elminated.");
-        }
+        client.getUser().setEnabled(false);
 
-        if (client.getUser() != null) {
-            throw new ClientWithUserAssociatedException("Client has user associated. It could not be elminated.");
-        }
+        //if (!client.getAccounts().isEmpty()) {
+        //    throw new ClientWithAccountsAssociatedException("Client has account associated. It could not be elminated.");
+        //}
+
+        //if (client.getUser() != null) {
+        //    throw new ClientWithUserAssociatedException("Client has user associated. It could not be elminated.");
+        //}
 
         clientRepository.delete(id);
     }

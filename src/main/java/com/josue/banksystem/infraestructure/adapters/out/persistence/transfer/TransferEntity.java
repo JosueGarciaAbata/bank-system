@@ -4,15 +4,18 @@ import com.josue.banksystem.infraestructure.adapters.out.persistence.account.Acc
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "transfers")
 @Getter
 @Setter
+@Entity
+@Table(name = "transfers")
+@SQLDelete(sql = "UPDATE transfers SET deleted_at = NOW() WHERE id = ?")
+@SQLRestriction("deleted_at IS NULL")
 public class TransferEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,4 +41,7 @@ public class TransferEntity {
     public void prePersist() {
         this.date = LocalDateTime.now();
     }
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
 }

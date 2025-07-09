@@ -1,5 +1,6 @@
 package com.josue.banksystem.domain.models;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ public class Client {
     private String lastname;
     private User user;
     private List<Account> accounts;
+    private LocalDateTime deletedAt;
 
     public Client() {
         this.accounts = new ArrayList<>();
@@ -73,5 +75,13 @@ public class Client {
                 ", lastname='" + lastname + '\'' +
                 ", user=" + user +
                 '}';
+    }
+
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(LocalDateTime deletedAt) {
+        this.deletedAt = deletedAt;
     }
 }

@@ -5,6 +5,8 @@ import com.josue.banksystem.infraestructure.adapters.out.persistence.account.Acc
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -13,6 +15,8 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "moviments")
+@SQLDelete(sql = "UPDATE moviments SET deleted_at = NOW() WHERE id = ?")
+@SQLRestriction("deleted_at IS NULL")
 public class MovimentEntity {
 
     @Id
@@ -48,4 +52,8 @@ public class MovimentEntity {
             this.reference = UUID.randomUUID().toString();
         }
     }
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
+
 }
