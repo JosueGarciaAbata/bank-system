@@ -86,6 +86,7 @@ public class AccountRestAdapter {
         return mapper.toAccountResponseWithMoviments(findAccountWithMovimentsById.findById(id));
     }
 
+    @PreAuthorize("hasAnyRole('CLIENT', 'ADMIN')")
     @PostMapping("/withdraw/{accountId}")
     public AccountResponse withdrawMoney(@PathVariable Long accountId,
                                          @RequestBody WithdrawRequest withdrawRequest) {
@@ -93,6 +94,7 @@ public class AccountRestAdapter {
         return mapper.toResponse(ac);
     }
 
+    @PreAuthorize("hasAnyRole('CLIENT', 'ADMIN')")
     @PostMapping("/deposit/{accountId}")
     public AccountResponse depositMoney(@PathVariable Long accountId,
                                          @RequestBody DepositRequest depositRequest) {

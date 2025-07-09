@@ -13,11 +13,14 @@ import com.josue.banksystem.infraestructure.adapters.in.rest.requests.user.Updat
 import com.josue.banksystem.infraestructure.adapters.in.rest.responses.user.UserResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/users")
 @AllArgsConstructor
@@ -54,12 +57,19 @@ public class UserRestAdapter {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public UserResponse update(@PathVariable Long id, @Valid @RequestBody UpdateUserRequest request) {
+
+        if (request.getPassword() != null) {
+            request.setPassword(request.getPassword().trim());
+        }
 
         User user = userMapper.toUser(request);
         user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
+
+        if (request.getPassword() != null && !request.getPassword().isBlank() ) {
+            user.setPassword(request.getPassword());
+        }
 
         if (request.isAdmin()) {
             // search role admin

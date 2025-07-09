@@ -4,12 +4,14 @@ import com.josue.banksystem.application.out.UserRepository;
 import com.josue.banksystem.domain.models.User;
 import com.josue.banksystem.infraestructure.adapters.out.persistence.mappers.UserPersistenceMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class UserRepositoryImp implements UserRepository {
@@ -44,7 +46,12 @@ public class UserRepositoryImp implements UserRepository {
     // i think it's not necessary yet.
     @Override
     public User update(User user, Long id) {
-        return null;
+
+        UserEntity toBeSaved = mapper.toUserEntity(user);
+        log.info("A SER GUARDADO, QUE TIENE : " +  toBeSaved.toString());
+
+        UserEntity entity = jpaRepository.save(mapper.toUserEntity(user));
+        return mapper.toUser(entity);
     }
 
     // not implemented yet (and never)

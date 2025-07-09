@@ -29,9 +29,10 @@ public class DataSeeder implements CommandLineRunner {
             RoleEntity employee = new RoleEntity();
             employee.setName("ROLE_EMPLOYEE");
 
-            roleJpaRepository.saveAll(List.of(user, admin, employee));
+            RoleEntity client = new RoleEntity();
+            client.setName("ROLE_CLIENT");
+
+            roleJpaRepository.saveAll(List.of(user, admin, employee, client));
         }
-
-
     }
 }

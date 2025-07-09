@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AccountUseCases {
 
-
     @Bean
     public GetAccounts getAccountsInteractor(AccountRepository accountRepository) {
         return new GetAccountsInteractor(accountRepository);
