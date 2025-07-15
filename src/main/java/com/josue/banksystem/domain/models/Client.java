@@ -7,6 +7,7 @@ import java.util.List;
 public class Client {
 
     private Long id;
+    private String dni;
     private String direction;
     private String name;
     private String lastname;
@@ -83,5 +84,13 @@ public class Client {
 
     public void setDeletedAt(LocalDateTime deletedAt) {
         this.deletedAt = deletedAt;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 }

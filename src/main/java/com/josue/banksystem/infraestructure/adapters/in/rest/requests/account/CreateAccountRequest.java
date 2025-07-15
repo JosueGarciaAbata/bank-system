@@ -13,10 +13,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CreateAccountRequest {
 
-    @NotBlank(message = "Account number must not be null and empty.")
-    @JsonProperty("account_number")
-    private String accountNumber;
-
     @NotNull(message = "Balance must not be null.")
     private Double balance;
 

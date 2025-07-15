@@ -9,6 +9,9 @@ import java.util.Optional;
 
 public interface AccountRepositoryJpa extends CrudRepository<AccountEntity, Long> {
 
+    @Query(value = "select * from accounts a where a.client_id = :clientId", nativeQuery = true)
+    List<AccountEntity> findByClientIdNative(@Param("clientId") Long clientId);
+
     @Query("SELECT ae FROM AccountEntity ae LEFT JOIN ae.moviments WHERE ae.id = :id")
     Optional<AccountEntity> findByIdWithMoviments(@Param("id") Long id);
 

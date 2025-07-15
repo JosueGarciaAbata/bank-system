@@ -12,6 +12,7 @@ public class Moviment {
     private LocalDateTime date;
     private MovimentType type;
     private String reference;
+    private LocalDateTime deletedAt;
 
     public Moviment() {
     }
@@ -82,5 +83,13 @@ public class Moviment {
 
     public void setType(MovimentType type) {
         this.type = type;
+    }
+
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(LocalDateTime deletedAt) {
+        this.deletedAt = deletedAt;
     }
 }

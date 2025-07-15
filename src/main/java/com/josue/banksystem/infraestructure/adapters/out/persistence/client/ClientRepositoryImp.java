@@ -42,6 +42,11 @@ public class ClientRepositoryImp implements ClientRepository {
         return jpaRepository.findById(id).map(mapper::toClient);
     }
 
+    @Override
+    public Optional<Client> findIncludingDeleted(Long id) {
+        return jpaRepository.findIncludingDeleted(id).map(mapper::toClient);
+    }
+
     // although i sent the user in the client it was a detached entity (the connection to the database was closed)
     // so i have to search for it again to have a managed entity.
     @Override
@@ -65,6 +70,11 @@ public class ClientRepositoryImp implements ClientRepository {
     @Override
     public void delete(Long id) {
         jpaRepository.deleteById(id);
+    }
+
+    @Override
+    public void restore(Client client) {
+        jpaRepository.save(mapper.toClientEntity(client));
     }
 
     @Override

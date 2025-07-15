@@ -1,5 +1,6 @@
 package com.josue.banksystem.domain.models;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,9 @@ public class User {
 
     private boolean admin;
     private boolean employee;
+
+    private LocalDateTime deletedAt;
+
 
     public User() {
         roles = new ArrayList<>();
@@ -86,5 +90,13 @@ public class User {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(LocalDateTime deletedAt) {
+        this.deletedAt = deletedAt;
     }
 }

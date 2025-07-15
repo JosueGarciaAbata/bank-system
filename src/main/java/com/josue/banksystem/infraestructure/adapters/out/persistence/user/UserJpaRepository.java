@@ -8,6 +8,9 @@ import java.util.Optional;
 
 public interface UserJpaRepository extends CrudRepository<UserEntity, Long> {
 
+    @Query(value = "SELECT * FROM users WHERE id = :id", nativeQuery = true)
+    Optional<UserEntity> findIncludingDeleted(@Param("id") Long id);
+
     @Query("select us from UserEntity us join fetch us.roles where us.email = :email")
     Optional<UserEntity> findByEmailWithRoles(@Param("email") String email);
 

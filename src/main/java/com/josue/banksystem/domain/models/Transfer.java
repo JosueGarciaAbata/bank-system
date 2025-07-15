@@ -10,6 +10,7 @@ public class Transfer {
     private Double amount;
     private LocalDateTime date;
     private String description;
+    private LocalDateTime deletedAt;
 
     public Transfer() {
     }
@@ -68,5 +69,13 @@ public class Transfer {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(LocalDateTime deletedAt) {
+        this.deletedAt = deletedAt;
     }
 }

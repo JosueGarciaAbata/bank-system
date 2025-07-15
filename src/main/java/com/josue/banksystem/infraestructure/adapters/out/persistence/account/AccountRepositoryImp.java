@@ -39,6 +39,14 @@ public class AccountRepositoryImp implements AccountRepository {
     }
 
     @Override
+    public List<Account> findAccountsByCliendId(Long clientId) {
+        return repositoryJpa
+                .findByClientIdNative(clientId)
+                .stream().map(persistenceMapper::toAccount)
+                .toList();
+    }
+
+    @Override
     public Account save(Account account) {
         Long clientId = account.getClient().getId();
 
@@ -63,6 +71,11 @@ public class AccountRepositoryImp implements AccountRepository {
 
     @Override
     public void delete(Long id) {
+    }
+
+    @Override
+    public void restoreAll(List<Account> accounts) {
+        repositoryJpa.saveAll(accounts.stream().map(persistenceMapper::toAccountEntity).toList());
     }
 
     @Override

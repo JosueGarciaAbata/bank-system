@@ -24,6 +24,9 @@ public class ClientEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
+    private String dni;
+
     @Column(nullable = false)
     private String name;
 
@@ -40,6 +43,6 @@ public class ClientEntity {
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AccountEntity> accounts;
 
-    @Column(nullable = true, name = "deleted_at")
+    @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 }

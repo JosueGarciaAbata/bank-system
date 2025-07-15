@@ -9,7 +9,8 @@ public interface MovimentRepository {
 
     List<Moviment> findAll();
     Optional<Moviment> findById(Long id);
+    List<Moviment> findAllByAccountId(Long accountId);
     Moviment save(Moviment moviment);
     void delete(Moviment moviment);
-
+    void restoreAll(List<Moviment> moviments);
 }

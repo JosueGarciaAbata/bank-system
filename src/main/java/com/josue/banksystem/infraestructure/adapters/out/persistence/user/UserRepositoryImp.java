@@ -37,19 +37,20 @@ public class UserRepositoryImp implements UserRepository {
     }
 
     @Override
+    public Optional<User> findIncludingDeleted(Long id) {
+        return jpaRepository.findIncludingDeleted(id).map(mapper::toUser);
+    }
+
+    @Override
     public User save(User user) {
         UserEntity userEntity = mapper.toUserEntity(user);
         userEntity.setPassword(passwordEncoder.encode(user.getPassword()));
         return mapper.toUser(jpaRepository.save(userEntity));
     }
 
-    // i think it's not necessary yet.
     @Override
     public User update(User user, Long id) {
-
         UserEntity toBeSaved = mapper.toUserEntity(user);
-        log.info("A SER GUARDADO, QUE TIENE : " +  toBeSaved.toString());
-
         UserEntity entity = jpaRepository.save(mapper.toUserEntity(user));
         return mapper.toUser(entity);
     }
@@ -58,6 +59,11 @@ public class UserRepositoryImp implements UserRepository {
     @Override
     public void delete(Long id) {
         //
+    }
+
+    @Override
+    public void restore(User user) {
+        jpaRepository.save(mapper.toUserEntity(user));
     }
 
     @Override

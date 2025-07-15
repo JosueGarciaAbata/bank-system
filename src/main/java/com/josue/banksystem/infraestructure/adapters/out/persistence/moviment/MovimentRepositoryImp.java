@@ -23,7 +23,7 @@ public class MovimentRepositoryImp implements MovimentRepository {
         return entites
                 .stream()
                 .map(mapper::toMoviment)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -31,6 +31,15 @@ public class MovimentRepositoryImp implements MovimentRepository {
         return repositoryJpa
                 .findById(id)
                 .map(mapper::toMoviment);
+    }
+
+    @Override
+    public List<Moviment> findAllByAccountId(Long accountId) {
+        return repositoryJpa
+                .findAllByAccountId(accountId)
+                .stream()
+                .map(mapper::toMoviment)
+                .toList();
     }
 
     @Override
@@ -43,5 +52,10 @@ public class MovimentRepositoryImp implements MovimentRepository {
     @Override
     public void delete(Moviment moviment) {
         //
+    }
+
+    @Override
+    public void restoreAll(List<Moviment> moviments) {
+        repositoryJpa.saveAll(moviments.stream().map(mapper::toMovimentEntity).toList());
     }
 }

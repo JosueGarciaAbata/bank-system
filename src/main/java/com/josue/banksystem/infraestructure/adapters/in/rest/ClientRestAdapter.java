@@ -32,11 +32,12 @@ public class ClientRestAdapter {
     private FindClientById findClientById;
     private UpdateClient updateClient;
     private DeleteClient deleteClient;
+    private ReactiveClient reactiveClient;
     private GetClientWithAccounts getClientWithAccounts;
 
     private ClientRestMapper clientMapper;
 
-    @PreAuthorize("hasAnyRole('EMPLOYEE', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/")
     public List<ClientResponse> getAll() {
         return getClients.getAll()
@@ -45,27 +46,27 @@ public class ClientRestAdapter {
                 .toList();
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/{id}")
     public ClientResponse getById(@PathVariable Long id) {
         return clientMapper.toClientResponse(findClientById.findById(id));
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/{id}/user")
     public ClientAndUserResponse getUserById(@PathVariable Long id) {
         Client client = findClientById.findById(id);
         return clientMapper.toClientAndUserResponse(client);
     }
 
-    @PreAuthorize("hasAnyRole('CLIENT', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/{id}/accounts")
     public ClientResponseWithAccounts getClientWithAccounts(@PathVariable Long id) {
         Client client = getClientWithAccounts.get(id);
         return clientMapper.toClientResponseWithAccounts(client);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     // i only can use this endpoint if i have a user.
     @PostMapping("/")
     public ClientResponse save(@Valid @RequestBody CreateClientRequest request) {
@@ -75,7 +76,7 @@ public class ClientRestAdapter {
       return clientMapper.toClientResponse(createClient.create(client));
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     @PutMapping("/{id}")
     public ClientResponse update(@PathVariable Long id,
                                         @Valid @RequestBody UpdateClientRequest request) {
@@ -88,10 +89,17 @@ public class ClientRestAdapter {
         return clientMapper.toClientResponse(updateClient.update(id, client));
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         deleteClient.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PostMapping("/reactive/{id}")
+    public ResponseEntity<Void> reactive(@PathVariable Long id) {
+        reactiveClient.reactive(id);
         return ResponseEntity.noContent().build();
     }
 

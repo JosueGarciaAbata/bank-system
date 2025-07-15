@@ -34,7 +34,7 @@ public class UserRestAdapter {
 
     private FindByNameRole findByNameRole;
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/")
     public List<UserResponse> getAll() {
         return getUsers.getAll()
@@ -43,20 +43,20 @@ public class UserRestAdapter {
                 .toList();
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/{id}")
     public UserResponse getById(@PathVariable Long id) {
         return userMapper.toUserRespose(findUserById.findById(id));
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     @PostMapping("/")
     public UserResponse save(@Valid @RequestBody CreateUserRequest request) {
         User user = userMapper.toUser(request);
         return userMapper.toUserRespose(createUser.create(user));
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     @PatchMapping("/{id}")
     public UserResponse update(@PathVariable Long id, @Valid @RequestBody UpdateUserRequest request) {
 

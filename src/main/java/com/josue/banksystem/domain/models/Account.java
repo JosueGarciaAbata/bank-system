@@ -3,6 +3,7 @@ package com.josue.banksystem.domain.models;
 import com.josue.banksystem.domain.enumerations.AccountType;
 import com.josue.banksystem.domain.exception.InsufficientAccountBalance;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class Account {
     private AccountType type;
     private Client client;
     private List<Moviment> moviments;
+    private LocalDateTime deletedAt;
 
     public Account() {
         this.moviments = new ArrayList<>();
@@ -112,6 +114,14 @@ public class Account {
         }
 
         this.balance += amount;
+    }
+
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(LocalDateTime deletedAt) {
+        this.deletedAt = deletedAt;
     }
 
     @Override

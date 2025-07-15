@@ -3,6 +3,8 @@ package com.josue.banksystem.infraestructure.config.usecases;
 import com.josue.banksystem.application.in.client.*;
 import com.josue.banksystem.application.out.AccountRepository;
 import com.josue.banksystem.application.out.ClientRepository;
+import com.josue.banksystem.application.out.MovimentRepository;
+import com.josue.banksystem.application.out.UserRepository;
 import com.josue.banksystem.application.usecases.client.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,6 +40,14 @@ public class ClientUserCases {
     @Bean
     public FindClientById findClientByIdInteractor(ClientRepository clientRepository) {
         return new FindClientByIdInteractor(clientRepository);
+    }
+
+    @Bean
+    public ReactiveClient reactiveClientInteractor(ClientRepository clientRepository,
+                                                   UserRepository userRepository,
+                                                   AccountRepository accountRepository,
+                                                   MovimentRepository movimentRepository) {
+        return new ReactiveClientInteractor(clientRepository, userRepository, accountRepository, movimentRepository);
     }
 
 }

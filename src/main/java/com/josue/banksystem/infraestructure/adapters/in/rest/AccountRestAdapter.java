@@ -39,23 +39,13 @@ public class AccountRestAdapter {
     private TransferMoney transferMoney;
     private AccountRestMapper mapper;
 
-    @PreAuthorize("hasAnyRole('EMPLOYEE', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/")
     public List<AccountResponse> getAll() {
         return getAccounts.getAll().stream().map(mapper::toResponse).toList();
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/testaccount")
-    public Account createTest(@Valid @RequestBody CreateAccountRequest request) {
-        Client client = findClientById.findById((request.getClientId())); // detached
-        Account account = mapper.toAccount(request);
-        log.info(account.toString());
-        account.setClient(client);
-        return account;
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     @PostMapping("/")
     public ResponseEntity<AccountResponse> create(@Valid @RequestBody CreateAccountRequest request) {
 
@@ -66,7 +56,7 @@ public class AccountRestAdapter {
         return ResponseEntity.status(HttpStatus.CREATED).body(mapper.toResponse(createAccount.create(account)));
     }
 
-    @PreAuthorize("hasAnyRole('CLIENT', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @PostMapping("/transfer")
     public ResponseEntity<String> transfer(@Valid @RequestBody TransferMoneyRequest request) {
         transferMoney.transfer(request.getIdSourceAccount(), request.getIdDestAccount(), request.getAmount(), request.getDescription());
@@ -74,19 +64,19 @@ public class AccountRestAdapter {
         return ResponseEntity.ok("Transfer completed sucessfully.");
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     @GetMapping("/{id}")
     public AccountResponse findById(@PathVariable Long id) {
         return mapper.toResponse(findAccountById.findById(id));
     }
 
-    @PreAuthorize("hasAnyRole('CLIENT', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_CLIENT', 'ROLE_ADMIN')")
     @GetMapping("/{id}/moviments")
     public AccountResponseWithMoviments withMoviments(@PathVariable Long id) {
         return mapper.toAccountResponseWithMoviments(findAccountWithMovimentsById.findById(id));
     }
 
-    @PreAuthorize("hasAnyRole('CLIENT', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @PostMapping("/withdraw/{accountId}")
     public AccountResponse withdrawMoney(@PathVariable Long accountId,
                                          @RequestBody WithdrawRequest withdrawRequest) {
@@ -94,7 +84,7 @@ public class AccountRestAdapter {
         return mapper.toResponse(ac);
     }
 
-    @PreAuthorize("hasAnyRole('CLIENT', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @PostMapping("/deposit/{accountId}")
     public AccountResponse depositMoney(@PathVariable Long accountId,
                                          @RequestBody DepositRequest depositRequest) {
