@@ -11,6 +11,7 @@ public interface ClientRepository {
     Optional<Client> findIncludingDeleted(Long id);
     Client save(Client client);
     void delete(Long id);
+    void delete(Client client);
     void restore(Client client);
     Optional<Client> findByIdWithAccounts(Long id);
 }

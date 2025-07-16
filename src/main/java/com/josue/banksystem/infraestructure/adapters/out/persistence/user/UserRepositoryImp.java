@@ -75,4 +75,9 @@ public class UserRepositoryImp implements UserRepository {
     public boolean existsByEmailAndIdNot(String email, Long id) {
         return jpaRepository.existsByEmailAndIdNot(email, id);
     }
+
+    @Override
+    public void disableById(Long id) {
+        jpaRepository.disableById(id);
+    }
 }

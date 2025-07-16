@@ -33,8 +33,9 @@ public class ClientUserCases {
     }
 
     @Bean
-    public DeleteClient deleteClientInteractor(ClientRepository clientRepository, AccountRepository accountRepository) {
-        return new DeleteClientInteractor(clientRepository, accountRepository);
+    public DeleteClient deleteClientInteractor(ClientRepository clientRepository,
+                                               UserRepository userRepository) {
+        return new DeleteClientInteractor(clientRepository, userRepository);
     }
 
     @Bean

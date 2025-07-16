@@ -15,4 +15,5 @@ public interface UserRepository {
     void restore(User user);
     boolean existsByEmail(String email);
     boolean existsByEmailAndIdNot(String email, Long id);
+    void disableById(Long id);
 }

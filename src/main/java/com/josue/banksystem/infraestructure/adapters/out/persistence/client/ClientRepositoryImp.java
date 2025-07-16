@@ -10,11 +10,13 @@ import com.josue.banksystem.infraestructure.adapters.out.persistence.user.UserEn
 
 import com.josue.banksystem.infraestructure.adapters.out.persistence.user.UserJpaRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Component()//value="clientRepositoryImp"
 @RequiredArgsConstructor
 public class ClientRepositoryImp implements ClientRepository {
@@ -73,8 +75,14 @@ public class ClientRepositoryImp implements ClientRepository {
     }
 
     @Override
+    public void delete(Client client) {
+        ClientEntity en = mapper.toClientEntity(client);
+        jpaRepository.delete(en);
+    }
+
+    @Override
     public void restore(Client client) {
-        jpaRepository.save(mapper.toClientEntity(client));
+        // pending...
     }
 
     @Override

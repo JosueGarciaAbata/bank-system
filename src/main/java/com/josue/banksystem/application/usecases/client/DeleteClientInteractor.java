@@ -4,22 +4,23 @@ import com.josue.banksystem.application.common.annotations.UseCase;
 import com.josue.banksystem.application.in.client.DeleteClient;
 import com.josue.banksystem.application.out.AccountRepository;
 import com.josue.banksystem.application.out.ClientRepository;
+import com.josue.banksystem.application.out.UserRepository;
 import com.josue.banksystem.domain.exception.ClientNotFoundExcepcion;
-import com.josue.banksystem.domain.exception.ClientWithAccountsAssociatedException;
-import com.josue.banksystem.domain.exception.ClientWithUserAssociatedException;
-import com.josue.banksystem.domain.models.Account;
 import com.josue.banksystem.domain.models.Client;
+import com.josue.banksystem.domain.models.User;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 public class DeleteClientInteractor implements DeleteClient {
 
     private final ClientRepository clientRepository;
-    private final AccountRepository accountRepository;
+    private final UserRepository userRepository;
 
-    public DeleteClientInteractor(ClientRepository clientRepository, AccountRepository accountRepository) {
+    public DeleteClientInteractor(ClientRepository clientRepository,
+                                  UserRepository userRepository) {
         this.clientRepository = clientRepository;
-        this.accountRepository = accountRepository;
+        this.userRepository = userRepository;
     }
 
     // remember: here the entities are detached.
@@ -27,19 +28,12 @@ public class DeleteClientInteractor implements DeleteClient {
     @UseCase
     // Creo que aqui deberia borrar las cuentas asociadas al cliente
     public void delete(Long id) {
-        Client client = clientRepository.findByIdWithAccounts(id)
+        Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new ClientNotFoundExcepcion("Client not found with id=" + id));
 
-        client.getUser().setEnabled(false);
+        userRepository.disableById(client.getUser().getId());
 
-        //if (!client.getAccounts().isEmpty()) {
-        //    throw new ClientWithAccountsAssociatedException("Client has account associated. It could not be elminated.");
-        //}
-
-        //if (client.getUser() != null) {
-        //    throw new ClientWithUserAssociatedException("Client has user associated. It could not be elminated.");
-        //}
-
-        clientRepository.delete(id);
+        client.setDeletedAt(LocalDateTime.now());
+        clientRepository.delete(client);
     }
 }

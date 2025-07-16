@@ -96,11 +96,11 @@ public class ClientRestAdapter {
         return ResponseEntity.noContent().build();
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @PostMapping("/reactive/{id}")
-    public ResponseEntity<Void> reactive(@PathVariable Long id) {
-        reactiveClient.reactive(id);
-        return ResponseEntity.noContent().build();
-    }
+    //@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    //@PostMapping("/reactive/{id}")
+    //public ResponseEntity<Void> reactive(@PathVariable Long id) {
+    //    reactiveClient.reactive(id);
+    //    return ResponseEntity.noContent().build();
+    //}
 
 }
